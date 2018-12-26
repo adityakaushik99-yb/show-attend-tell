@@ -35,5 +35,5 @@ def main():
 			if i%100 == 0:
 				print('Resized images: %d/%d'%(i, num_images))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	main()
