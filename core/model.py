@@ -54,7 +54,7 @@ class CaptionGenerator(object):
 			features_proj = tf.reshape(features_proj,[-1,self.D, self.D])
 			return features_proj
 
-	def _attention_layer(self, features, features_proj, h , reuse = false):
+	def _attention_layer(self, features, features_proj, h , reuse = False):
 		with tf.variable_scope('attention_layer', reuse = reuse):
 			w = tf.get_variable('w', [self.H, self.D], initializer = self.weight_initializer)
 			b = tf.get_variable('b', [self.D], initializer = self.const_initializer)
@@ -94,7 +94,7 @@ class CaptionGenerator(object):
 
 			if dropout:
 				h_logits = tf.nn.dropout(h_logits, 0.5)
-			out_logits  tf.matmul(h_logits, w_out)+b_out
+			out_logits = tf.matmul(h_logits, w_out)+b_out
 			return out_logits
 	def _batch_norm(self, x,mode = 'train', name = None):
 		return tf.contrib.layers.batch_norm(inputs=x, decay = 0.95, center = True, scale = True, is_training = (mode=='train'), update_collections= None, scope= (name+'batch_norm'))
@@ -109,7 +109,7 @@ class CaptionGenerator(object):
 		mask = tf.to_float(tf.not_equal(captons_out,self._null))
 
 		# batch normalization of feature vectors
-		features = self._batch_norm(features, mode-'train', name'conv_features')
+		features = self._batch_norm(features, mode-'train', name='conv_features')
 
 		c, h = self._get_initial_lstm(features = features)
 		x = self._word_embedding(inputs=captions_in)

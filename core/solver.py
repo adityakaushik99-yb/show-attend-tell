@@ -4,10 +4,10 @@ import skimage.transform
 import numpy as np 
 import time
 import os
-import cPickle as pickle 
+import _pickle as pickle 
 from scipy import ndimage
-from utils import *
-from bleu import evaluate
+from core.utils import *
+from core.bleu import evaluate
 
 
 class CaptioningSolver(object):
@@ -29,7 +29,7 @@ class CaptioningSolver(object):
 		self.test_model = kwargs.pop('test_model', './model/lstm/model-1')
 
 		if self.update_rule=='adam':
-			self.optimizer  tf.train.AdamOptimizer
+			self.optimizer   = tf.train.AdamOptimizer
 		elif self.update_rule == 'momentum':
 			self.optimizer = tf.train.MomentumOptimizer
 		elif self.update_rule=='rmsprop':
@@ -68,7 +68,7 @@ class CaptioningSolver(object):
 
 		print('The number of epochs : %d '%self.n_epochs)
 		print('Data size : %d'%n_examples)
-		print('Batch size : %d', %self.batch_size)
+		print('Batch size : %d' %self.batch_size)
 		print('Iterations per epoch : %d' %n_iters_per_epoch)
 
 		conf = tf.ConfigProto(allow_soft_placement=True)

@@ -1,8 +1,9 @@
 import numpy as np 
-import CPickle as pickle
+import pickle as pickle
 import hickle
 import time
 import os
+import pandas as pd
 
 def load_coco_data(data_path='./data', split='train'):
 	data_path=os.path.join(data_path,split)
@@ -79,7 +80,7 @@ def write_bleu(scores, path, epoch):
 
 def load_pickle(path):
 	with open(path, 'rb') as f:
-		file = pickle.load(f)
+		file = pd.read_pickle(f)
 		print('Loaded %s..'%path)
 		return file
 
