@@ -46,9 +46,9 @@ class Vgg19(object):
 					h = self.images
 				h = self._conv(h, self.params[layer]['w'], self.params[layer]['b'])
 			elif layer_type=='relu':
-				h = self.relu(h)
+				h = self._relu(h)
 			elif layer_type == 'pool':
-				h = self.pool(h)
+				h = self._pool(h)
 			if layer=='conv5_3':
 				self.features = tf.reshape(h, [-1,196,512])
 

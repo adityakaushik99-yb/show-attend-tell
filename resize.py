@@ -21,7 +21,7 @@ def main():
 	splits = ['train', 'val']
 	for split in splits:
 		folder = './image/%s2014' %split
-		resized_folder = './image/%s2014_resized'
+		resized_folder = './image/%s2014_resized'%split
 		if not os.path.exists(resized_folder):
 			os.makedirs(resized_folder)
 		print('Start resizing %s images.'%split)
